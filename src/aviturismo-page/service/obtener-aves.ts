@@ -4,8 +4,10 @@ import type { Ave } from "../interface/Ave";
 export const obtenerAve = async (): Promise<Ave[]> => {
   const response = await turismoApi<Ave[]>("/aves");
 
+  console.log(response.data);
+
   response.data.forEach((ave) => {
-    console.log(ave.nombre_comun);
+    console.log(ave.url_img);
   });
 
   return response.data;
