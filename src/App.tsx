@@ -1,14 +1,8 @@
-// import { AviturismoPage } from "./aviturismo-page/components/AviturismoPage";
-// import { HeaderHome } from "./home/components/HeaderHome";
-// import { MainHome } from "./home/components/MainHome";
-
+import Router from "./Router/Router";
 export const App = () => {
   return (
     <>
-      {/* <HeaderHome></HeaderHome>
-      <MainHome></MainHome> */}
-
-      {/* <AviturismoPage></AviturismoPage> */}
+      <Router />
     </>
   );
 };
