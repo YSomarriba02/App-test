@@ -5,6 +5,7 @@ export default function Registro() {
     <Auth
       title="Crea una cuenta"
       textBtn="Continuar con correo electronico"
+      inputNombre={true}
     ></Auth>
   );
 }

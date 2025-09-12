@@ -1,32 +1,46 @@
-import { Link } from "react-router-dom";
 import ButtonGoogle from "../CustomsHooks/ButtonGoogle";
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
+import Input from "./Components/Input";
 
 interface props {
   title: string;
   textBtn: string;
   children?: ReactNode;
+  inputNombre?: boolean;
 }
 
-export default function Auth({ title, textBtn, children }: props) {
+export default function Auth({ title, textBtn, inputNombre, children }: props) {
+  const refForm = useRef(null);
   return (
     <div className="flex flex-col justify-center items-center h-screen relative">
       <div className="flex flex-col gap-2.5 bg-[#b5d7e7] w-[90%]  rounded-3xl p-10 [border:solid_black_1px] absolute top-[50%] [transform:translateY(-50%)] md:w-[60%] lg:w-[35%]">
         <h1 className=" [font-size:20px] font-bold">{title}</h1>
-        <form action="" className="w-full flex flex-col gap-4">
-          <input
-            className="w-full h-9 p-6 bg-white [border:solid_black_1px]"
-            type="email"
-            id="nombre"
-            placeholder="Email o nombre de usuario"
-          />
-          <input
-            className="w-full h-9 p-6 bg-white [border:solid_black_1px]"
-            type="password"
-            id="nombre"
-            placeholder="Contraseña"
-          />
-          <button className="h-12 bg-black text-white font-bold [border-radius:6px]">
+        <form action="" className="w-full flex flex-col gap-4" ref={refForm}>
+          {inputNombre && (
+            <Input type="text" name="nombre" placeholder="Nombre usuario" />
+          )}
+          <Input type="email" name="email" placeholder="Email" />
+          <Input type="password" name="password" placeholder="Contraseña" />
+          <button
+            onClick={async (e) => {
+              e.preventDefault();
+              if (!refForm.current) return;
+
+              const formData = Object.fromEntries(
+                new FormData(refForm.current).entries()
+              );
+
+              const fetching = await fetch(
+                "http://localhost:3000/auth/registrar",
+                {
+                  method: "post",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(formData),
+                }
+              );
+            }}
+            className="h-12 bg-black text-white font-bold [border-radius:6px]"
+          >
             {textBtn}
           </button>
         </form>
