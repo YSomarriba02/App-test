@@ -4,7 +4,7 @@
 
 // export const useAve = () => {
 
-//   const [aves, setAves] = useState<Ave[]>([])
+//   ocnst [aves, setAves] = useState<Ave[]>([])
 
 //   useEffect(()=>{
 

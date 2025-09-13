@@ -2,7 +2,7 @@ import { turismoApi } from "../../apis/turismo.api";
 import type { Ave } from "../interface/Ave";
 
 export const obtenerAve = async (): Promise<Ave[]> => {
-  const response = await turismoApi<Ave[]>("/aves");
+  const response = await turismoApi.get<Ave[]>("/aves");
 
   console.log(response.data);
 
