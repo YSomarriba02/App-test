@@ -1,23 +1,28 @@
-// import { useEffect, useState } from "react";
-// import type { Ave } from "../interface/Ave";
-// import { obtenerAve } from "../service/obtener-aves";
+import { useState } from "react";
+import type { Ave } from "../interface/Ave";
+import { obtenerAve, obtenerAvesPorZona } from "../service";
 
-// export const useAve = () => {
+export const useAve = () => {
+  const [aves, setAves] = useState<Ave[]>([]);
 
-//   ocnst [aves, setAves] = useState<Ave[]>([])
+  const obtenerAves = async () => {
+    const listAves = await obtenerAve();
 
-//   useEffect(()=>{
+    setAves(listAves);
+  };
 
-//     const aves = await obtenerAve()
+  // Obtener aves filtradas por zona
+  const filtrarAvesPorZona = async (zonaId: number) => {
+    const listAves = await obtenerAvesPorZona(zonaId);
+    setAves(listAves);
+  };
 
-//     setAves(aves)
+  return {
+    //propiedades
+    aves,
 
-//   },[])
-//   return {
-
-//     //propiedades
-//     aves,
-
-//     estadoCr: aves
-//   };
-// };
+    //metodos
+    obtenerAves,
+    filtrarAvesPorZona,
+  };
+};
