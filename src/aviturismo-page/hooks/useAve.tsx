@@ -13,6 +13,7 @@ export const useAve = () => {
 
   // Obtener aves filtradas por zona
   const filtrarAvesPorZona = async (zonaId: number) => {
+    console.log("zona", zonaId);
     const listAves = await obtenerAvesPorZona(zonaId);
     setAves(listAves);
   };

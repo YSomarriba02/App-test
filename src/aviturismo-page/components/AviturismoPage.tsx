@@ -1,27 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAve } from "../hooks/useAve";
 import { AvesFiltro } from "./AvesFiltro";
 import { AvesGrid } from "./AvesGrid";
 
-const filtros = ["Pacífico", "Centro", "Caribe Norte", "Caribe Sur", "Lagos y lagunas"];
+const filtros = [
+  { id: 0, nombre: "Todas" },
+  { id: 1, nombre: "Pacífico" },
+  { id: 2, nombre: "Centro" },
+  { id: 3, nombre: "Caribe Norte" },
+  { id: 4, nombre: "Caribe Sur" },
+  { id: 5, nombre: "Lagos y lagunas" },
+];
 
 export const AviturismoPage = () => {
   const { aves, obtenerAves, filtrarAvesPorZona } = useAve();
+  const [zona, setZona] = useState<number>(0);
 
   useEffect(() => {
     obtenerAves();
-  }, [obtenerAves]);
+  }, []);
 
-  const handleFiltroClick = (filtro: string) => {
-    const mapaZona: Record<string, number> = {
-      Pacífico: 1,
-      Centro: 2,
-      "Caribe Norte": 3,
-      "Caribe Sur": 4,
-      "Lagos y Lagunas": 5,
-    };
-    const zonaId = mapaZona[filtro];
-    if (zonaId) filtrarAvesPorZona(zonaId);
+  const handleFiltroClick = (zonaId: number) => {
+    if (zonaId === zona) return;
+
+    setZona(zonaId);
+
+    if (zonaId === 0) {
+      obtenerAves();
+    } else {
+      filtrarAvesPorZona(zonaId);
+    }
   };
 
   return (
