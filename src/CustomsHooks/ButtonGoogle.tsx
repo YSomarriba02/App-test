@@ -27,7 +27,7 @@ export default function ButtonGoogle({ accionquery }: props) {
         data-client_id="604063939668-kju71nqdf99fn8lg581prs6j9ba50l8s.apps.googleusercontent.com"
         data-context="signin"
         data-ux-mode="redirect"
-        data-login_uri={`http://localhost:3000/auth/google/callback?accion=${accionquery}`}
+        data-login_uri={`https://prueba-server-b762.onrender.com/auth/google/callback?accion=${accionquery}`}
         data-auto_prompt="false"
       ></div>
 
