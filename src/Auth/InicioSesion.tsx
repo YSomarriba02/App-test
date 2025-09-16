@@ -4,7 +4,7 @@ import Auth from "./Auth";
 export default function InicioSesion() {
   return (
     <Auth
-      endpoint="http://localhost:3000/auth/iniciarsesion"
+      endpoint="https://prueba-server-b762.onrender.com/auth/iniciarsesion"
       title="Inciar sesion"
       textBtn="Siguiente"
       accionquery="iniciosesion"

@@ -1,7 +1,6 @@
 import ButtonGoogle from "../CustomsHooks/ButtonGoogle";
 import { useRef, type ReactNode } from "react";
 import Input from "./Components/Input";
-import { turismoApi } from "../apis/turismo.api";
 
 export type typeActionQuery = "registro" | "iniciosesion";
 
