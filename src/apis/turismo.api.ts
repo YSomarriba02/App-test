@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const turismoApi = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://app-test-k6yu.onrender.com",
 });
