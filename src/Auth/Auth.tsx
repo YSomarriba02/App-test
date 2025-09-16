@@ -50,6 +50,7 @@ export default function Auth({
 
               const fetching = await fetch(`${endpoint}`, {
                 method: "post",
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
               });
