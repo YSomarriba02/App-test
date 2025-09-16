@@ -7,6 +7,7 @@ export default function InicioSesion() {
       endpoint="http://localhost:3000/auth/iniciarsesion"
       title="Inciar sesion"
       textBtn="Siguiente"
+      accionquery="iniciosesion"
     >
       <div className="p-4 [font-size:16px] mb:p-6 mb:[font-size:20px]">
         No tienes cuenta?

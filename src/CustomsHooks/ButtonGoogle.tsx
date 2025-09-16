@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import type { typeActionQuery } from "../Auth/Auth";
 
 declare global {
   interface Window {
@@ -6,13 +7,18 @@ declare global {
   }
 }
 
-export default function ButtonGoogle() {
+type props = {
+  accionquery: typeActionQuery;
+};
+
+export default function ButtonGoogle({ accionquery }: props) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://accounts.google.com/gsi/client";
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
+    console.log(accionquery);
   }, []);
   return (
     <>
@@ -21,7 +27,7 @@ export default function ButtonGoogle() {
         data-client_id="604063939668-kju71nqdf99fn8lg581prs6j9ba50l8s.apps.googleusercontent.com"
         data-context="signin"
         data-ux-mode="redirect"
-        data-login_uri="http://localhost:3000/auth/google/callback"
+        data-login_uri={`http://localhost:3000/auth/google/callback?accion=${accionquery}`}
         data-auto_prompt="false"
       ></div>
 

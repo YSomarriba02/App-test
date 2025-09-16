@@ -3,12 +3,15 @@ import { useRef, type ReactNode } from "react";
 import Input from "./Components/Input";
 import { turismoApi } from "../apis/turismo.api";
 
+export type typeActionQuery = "registro" | "iniciosesion";
+
 interface props {
   title: string;
   textBtn: string;
   children?: ReactNode;
   inputNombre?: boolean;
   endpoint: string;
+  accionquery: typeActionQuery;
 }
 
 export default function Auth({
@@ -17,6 +20,7 @@ export default function Auth({
   inputNombre,
   endpoint,
   children,
+  accionquery,
 }: props) {
   const refForm = useRef(null);
   return (
@@ -50,14 +54,15 @@ export default function Auth({
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
               });
-              console.log(fetching);
+              const data = await fetching.json();
+              console.log(data);
             }}
             className="h-12 bg-black text-white font-bold [border-radius:6px]"
           >
             {textBtn}
           </button>
         </form>
-        <ButtonGoogle />
+        <ButtonGoogle accionquery={accionquery} />
         {children}
       </div>
     </div>
